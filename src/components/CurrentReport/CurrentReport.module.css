@@ -1,0 +1,36 @@
+.location{
+    font-size: 3.2rem;
+    font-weight: 700;
+    
+}
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+.current-weather {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.icon {
+  height: 16rem;
+}
+.current-temp {
+  font-size: 6.4rem;
+  font-weight: 700;
+}
+.current-temp span {
+  font-size: 3.2rem;
+}
+.feels-like {
+  font-size: 1.4rem;
+  color: #757575;
+}
+.feels-like span {
+  font-size: 1.4rem;
+}
+.description {
+  font-size: 1.4rem;
+}
