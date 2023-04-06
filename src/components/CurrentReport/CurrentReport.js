@@ -1,38 +1,40 @@
+import DetaildReport from "../DeteildReport/DetaildReport";
 import styles from "./CurrentReport.module.css";
 const CurrentReport = (props) => {
   if (!props.weather) return;
   console.log(props.weather);
-  const location = props.weather.name;
-  const makeCelsius = (temperature) => {
-    return Math.round(temperature - 273.15);
-  };
-  const weatherCode = props.weather.weather[0].icon;
-
-  const tempCelcius = makeCelsius(props.weather.main.temp);
-  const feelsCelsius = makeCelsius(props.weather.main.feels_like);
-  const description = props.weather.weather[0].description;
+ 
   return (
     <>
-      <div className={styles.location}>{location}</div>
+      <div className={styles.location}>{props.location}</div>
       <div className={styles["current-weather"]}>
         <img
           className={styles.icon}
-          src={require(`../../resources/icon_${weatherCode}.png`)}
+          src={require(`../../resources/icon_${props.weather.weather[0].icon}.png`)}
           alt="icon"
         ></img>
         <div className={styles.details}>
           <label className={styles["current-temp"]}>
-            {tempCelcius}
+            {Math.round(props.weather.temp)}
             &deg;
             <span>C</span>
           </label>
           <label className={styles["feels-like"]}>
             Feels Like:
-            <span>{feelsCelsius}&deg;</span>
+            <span>{Math.round(props.weather["feels_like"])}&deg;</span>
           </label>
-          <label className={styles.description}>{description}</label>
+          <label className={styles.description}>
+            {props.weather.weather[0].description}
+          </label>
         </div>
       </div>
+      <DetaildReport
+        clouds={props.weather.clouds}
+        humidity={props.weather.humidity}
+        visibility={props.weather.visibility}
+        wind={props.weather['wind_speed']}
+        pressure={props.weather.pressure}
+      ></DetaildReport>
     </>
   );
 };

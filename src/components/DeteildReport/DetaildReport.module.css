@@ -1,0 +1,20 @@
+.current-weather-details{
+
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    min-width: 32rem;
+    font-size: 1.4rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: white;
+    gap: 1.5rem 1rem;
+    box-shadow: 0 5px 10px 0 hsla(0,0%,88%,.667);
+}
+.current-weather-details div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.current-weather-details div label{
+    color: #757575;
+}
