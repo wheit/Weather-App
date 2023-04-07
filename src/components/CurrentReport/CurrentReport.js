@@ -2,11 +2,11 @@ import DetaildReport from "../DeteildReport/DetaildReport";
 import styles from "./CurrentReport.module.css";
 const CurrentReport = (props) => {
   if (!props.weather) return;
-  console.log(props.weather);
+  
  
   return (
     <>
-      <div className={styles.location}>{props.location}</div>
+    
       <div className={styles["current-weather"]}>
         <img
           className={styles.icon}

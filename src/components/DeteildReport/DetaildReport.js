@@ -1,6 +1,5 @@
 import styles from "./DetaildReport.module.css"
 const DetaildReport=(props)=>{
-    console.log(props.visibility)
     
     return (
       <div className={styles["current-weather-details"]}>

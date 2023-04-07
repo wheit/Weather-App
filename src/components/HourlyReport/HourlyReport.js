@@ -2,6 +2,7 @@ import { ScrollContainer } from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
 import styles from "./HourlyReport.module.css";
 const HourlyReport = (props) => {
+ 
   const hours = [...props.weather.slice(0, 24)];
   const makehours = (unix) => {
     const miliseconds = unix * 1000;
