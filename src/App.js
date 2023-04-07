@@ -13,6 +13,7 @@ function App() {
   const [longidute, setLongitude] = useState([]);
   const [currentWeather, setCurrentWeather] = useState();
   const [currentCity, setCurrentCity] = useState("");
+  const [isFavorite,setIsFavorite]=useState(false);
   const getCityname = (lat, lon, ApiKey) => {
     fetch(
       `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${ApiKey}`
@@ -32,8 +33,17 @@ function App() {
       `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${ApiKey}`
     )
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) =>setData(data)
+
+      );
   };
+  const setData=(data)=>{
+    const lat = data[0].lat;
+    const long = data[0].lon;
+    setCurrentCity(data[0].name);
+    getWeather(lat,long,ApiKey)
+    console.log(currentCity)
+  }
 
   const ApiKey = "fc0797b85352aced8966f0b89ebd950d";
   useEffect(() => {
@@ -47,7 +57,7 @@ function App() {
       await getCityname(latitude, longidute, ApiKey);
     };
     fetchData();
-  }, [latitude, longidute]);
+  },[latitude,longidute]);
   const searchHandler = (value) => {
     if (!value) return;
     

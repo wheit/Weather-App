@@ -1,6 +1,8 @@
 import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import styles from "./AddtoFavorite.module.css";
-const AddToFavorite=()=>{
+import { useEffect } from "react";
+const AddToFavorite=(props)=>{
+  
     return (
       <label className={styles["add-to-favorite"]}>
         <HeartOutlined style={{ fontSize: "3.2rem", color: "red" }} />

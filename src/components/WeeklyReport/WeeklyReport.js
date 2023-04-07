@@ -11,7 +11,7 @@ export const WeeklyReport = (props) => {
        "Friday",
        "Saturday",
      ];
-    console.log(props.daily)
+   
     const makeDays = (unix) => {
       const miliseconds = unix * 1000;
       const date = new Date(miliseconds);
