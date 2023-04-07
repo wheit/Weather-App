@@ -1,0 +1,8 @@
+.search{
+    grid-column: 3/span 2;
+    grid-row: 2;
+    text-align: end;
+    border: none;
+    
+    
+}
