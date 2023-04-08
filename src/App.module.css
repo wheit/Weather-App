@@ -1,7 +1,9 @@
 .main-container{
    min-height: 100vh;
    width: 100%;
-    
+   
+   background-size: cover;
+   background-position: center;
 }
 .main-container-grid{
     width: 90vw;
@@ -11,7 +13,30 @@
     padding: 3vh 4.5vw;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(7,auto);
-    gap: 1rem;
+    row-gap: 1rem;
+
     align-items: center;
 
 }
+.clouds{
+    background-image: url(./resources/clouds.jpg);
+
+}
+.clear{
+    background-image: url(./resources/clear.jpg);
+
+}
+.rain{
+    background-image: url(./resources/rain.jpg);
+
+}
+.thunderstorm{
+    background-image: url(./resources/thuderstorm.jpg);
+}
+.snow{
+    background-image: url(./resources/snowing.jpg)
+}
+.drizzle{
+    background-image: url(./resources/drizzle.jpg)
+}
+

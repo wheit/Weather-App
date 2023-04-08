@@ -11,6 +11,7 @@
   justify-content: space-between;
   grid-column:span 4;
   grid-row: 4;
+  padding: 1rem;
 }
 .icon {
   height: 14rem;
@@ -32,4 +33,12 @@
 }
 .description {
   font-size: 1.4rem;
+}
+
+@media screen and (min-width:600px) {
+  .current-weather{
+
+    grid-column: span 2;
+  }
+  
 }

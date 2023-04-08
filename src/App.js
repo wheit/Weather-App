@@ -16,6 +16,9 @@ function App() {
   const [currentCity, setCurrentCity] = useState("");
   const [currentIsFavorite, currentSetIsFavorite] = useState(false);
   const [favoriteCities, setFavoriteCities] = useState([]);
+  const [background, setBackground] = useState("");
+  const [isLoading,setPageisLoaing]=useState(true)
+
   const getCityname = (lat, lon, ApiKey) => {
     fetch(
       `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${ApiKey}`
@@ -25,7 +28,7 @@ function App() {
   };
   const getWeather = (lat, long, ApiKey) => {
     fetch(
-      `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${long}&exclude={part}&appid=${ApiKey}&units=metric`
+      `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${long}&appid=${ApiKey}&units=metric`
     )
       .then((response) => response.json())
       .then((data) => setCurrentWeather(data));
@@ -59,66 +62,87 @@ function App() {
   }, [latitude, longidute]);
 
   const searchHandler = (value) => {
-    console.log(value)
+    console.log(value);
     if (!value) return;
     getCoords(value, ApiKey);
   };
   const addToFavoriteHandler = () => {
-    currentSetIsFavorite(currentCity);
-   
+    currentSetIsFavorite(true);
+
     setFavoriteCities((prevState) => {
-    
-      if (prevState.includes(currentCity)){
-        return [...prevState]
-      } else{
+      if (prevState.includes(currentCity)) {
+        return [...prevState];
+      } else {
         return [...prevState, currentCity];
       }
     });
-   
   };
-    useEffect(() => {
-      const favCity=JSON.parse(localStorage.getItem('favorite'));
-      if (!favCity) return;
-   
-      setFavoriteCities(favCity);
+  const removeFavoriteHandler = () => {
+    currentSetIsFavorite(false);
+    const newCities = favoriteCities.filter((el) => el !== currentCity);
+    setFavoriteCities(newCities);
+  };
+ 
+  useEffect(() => {
+    const favCity = JSON.parse(localStorage.getItem("favorite"));
+    if (!favCity) return;
 
-    },[]);
+    setFavoriteCities(favCity);
+  }, []);
 
-  useEffect(()=>{
-    localStorage.setItem('favorite',JSON.stringify(favoriteCities))
-  },[favoriteCities])
-  useEffect(()=>{
-    if(favoriteCities.includes(currentCity)){
-      currentSetIsFavorite(true)
-    }else{
+  useEffect(() => {
+    localStorage.setItem("favorite", JSON.stringify(favoriteCities));
+  }, [favoriteCities]);
+
+  useEffect(() => {
+    if (favoriteCities.includes(currentCity)) {
+      currentSetIsFavorite(true);
+    } else {
       currentSetIsFavorite(false);
     }
-  },[currentCity])
+    
+  }, [currentCity]);
+  useEffect(() => {
+    let description = currentWeather?.current.weather[0].main;
+    if (!description) return;
+    setBackground(description.toLowerCase());
+    setPageisLoaing(false);
+    
+  }, [currentWeather]);
 
-  
  
+  
+
   return (
     <main className="App">
-      <div className={styles["main-container"]}>
-        <div className={styles["main-container-grid"]}>
-          <FavoriteLocations onClick={searchHandler} favoriteLocations={favoriteCities}></FavoriteLocations>
-          <CurrentLocation location={currentCity}></CurrentLocation>
-          <AddToFavorite
-            onAdd={addToFavoriteHandler}
-            isFavorite={currentIsFavorite}
-          ></AddToFavorite>
-          <SearchBar onSearch={searchHandler}></SearchBar>
-          {currentWeather ? (
-            <CurrentReport weather={currentWeather?.current} />
-          ) : null}
-          {currentWeather ? (
-            <HourlyReport weather={currentWeather?.hourly}></HourlyReport>
-          ) : null}
-          {currentWeather ? (
-            <WeeklyReport daily={currentWeather?.daily}></WeeklyReport>
-          ) : null}
+      {isLoading ? null : (
+        <div className={`${styles["main-container"]} ${styles[background]}`}>
+          <div className={styles["main-container-grid"]}>
+            <FavoriteLocations
+              onClick={searchHandler}
+              favoriteLocations={favoriteCities}
+              currentCity={currentCity}
+            ></FavoriteLocations>
+            <CurrentLocation location={currentCity}></CurrentLocation>
+            <AddToFavorite
+              onAdd={addToFavoriteHandler}
+              onRemove={removeFavoriteHandler}
+              isFavorite={currentIsFavorite}
+            ></AddToFavorite>
+            <SearchBar onSearch={searchHandler}></SearchBar>
+            {/* {currentWeather.alerts?<div>e alerta</div>:null} */}
+            {currentWeather ? (
+              <CurrentReport weather={currentWeather?.current} />
+            ) : null}
+            {currentWeather ? (
+              <HourlyReport weather={currentWeather?.hourly}></HourlyReport>
+            ) : null}
+            {currentWeather ? (
+              <WeeklyReport daily={currentWeather?.daily}></WeeklyReport>
+            ) : null}
+          </div>
         </div>
-      </div>
+      )}
     </main>
   );
 }

@@ -11,7 +11,7 @@ const AddToFavorite = (props) => {
       ) : (
         <HeartFilled
           style={{ fontSize: "3.2rem", color: "red" }}
-          onClick={props.onAdd}
+          onClick={props.onRemove}
         />
       )}
     </label>
