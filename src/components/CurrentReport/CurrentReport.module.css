@@ -10,7 +10,7 @@
   flex-direction: row;
   justify-content: space-between;
   grid-column:span 4;
-  grid-row: 3;
+  grid-row: 4;
 }
 .icon {
   height: 14rem;

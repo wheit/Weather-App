@@ -7,6 +7,7 @@ import CurrentLocation from "./components/CurrentLocation/CurrentLocation";
 
 import SearchBar from "./components/SearchBar/SearchBar";
 import WeeklyReport from "./components/WeeklyReport/WeeklyReport";
+import FavoriteLocations from "./components/FavoriteLocations/FavoriteLocations";
 
 function App() {
   const [latitude, setLatitude] = useState([]);
@@ -58,6 +59,7 @@ function App() {
   }, [latitude, longidute]);
 
   const searchHandler = (value) => {
+    console.log(value)
     if (!value) return;
     getCoords(value, ApiKey);
   };
@@ -77,14 +79,12 @@ function App() {
     useEffect(() => {
       const favCity=JSON.parse(localStorage.getItem('favorite'));
       if (!favCity) return;
-      console.log(favCity);
+   
       setFavoriteCities(favCity);
 
     },[]);
 
   useEffect(()=>{
-    
-    
     localStorage.setItem('favorite',JSON.stringify(favoriteCities))
   },[favoriteCities])
   useEffect(()=>{
@@ -101,6 +101,7 @@ function App() {
     <main className="App">
       <div className={styles["main-container"]}>
         <div className={styles["main-container-grid"]}>
+          <FavoriteLocations onClick={searchHandler} favoriteLocations={favoriteCities}></FavoriteLocations>
           <CurrentLocation location={currentCity}></CurrentLocation>
           <AddToFavorite
             onAdd={addToFavoriteHandler}

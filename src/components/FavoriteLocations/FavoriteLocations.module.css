@@ -1,0 +1,17 @@
+.favorite-locations-container{
+    grid-row: 1;
+    grid-column: span 4;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5;
+    font-size: 3.2rem;
+    font-weight: 700;
+}
+.favorite-locations{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: 300;
+
+}

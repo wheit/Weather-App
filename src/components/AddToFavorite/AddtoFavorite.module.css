@@ -1,4 +1,5 @@
 .add-to-favorite{
 cursor: pointer;
  justify-self: end;
+ grid-row: 2;
 }
