@@ -4,7 +4,7 @@ import CurrentReport from "./components/CurrentReport/CurrentReport";
 import HourlyReport from "./components/HourlyReport/HourlyReport";
 import AddToFavorite from "./components/AddToFavorite/AddtoFavorite";
 import CurrentLocation from "./components/CurrentLocation/CurrentLocation";
-import SettingsTab from "./components/SettingsTab/SettingsTab";
+
 import SearchBar from "./components/SearchBar/SearchBar";
 import WeeklyReport from "./components/WeeklyReport/WeeklyReport";
 
@@ -13,7 +13,8 @@ function App() {
   const [longidute, setLongitude] = useState([]);
   const [currentWeather, setCurrentWeather] = useState();
   const [currentCity, setCurrentCity] = useState("");
-  const [isFavorite,setIsFavorite]=useState(false);
+  const [currentIsFavorite, currentSetIsFavorite] = useState(false);
+  const [favoriteCities, setFavoriteCities] = useState([]);
   const getCityname = (lat, lon, ApiKey) => {
     fetch(
       `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${ApiKey}`
@@ -33,17 +34,14 @@ function App() {
       `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${ApiKey}`
     )
       .then((response) => response.json())
-      .then((data) =>setData(data)
-
-      );
+      .then((data) => setData(data));
   };
-  const setData=(data)=>{
+  const setData = (data) => {
     const lat = data[0].lat;
     const long = data[0].lon;
     setCurrentCity(data[0].name);
-    getWeather(lat,long,ApiKey)
-    console.log(currentCity)
-  }
+    getWeather(lat, long, ApiKey);
+  };
 
   const ApiKey = "fc0797b85352aced8966f0b89ebd950d";
   useEffect(() => {
@@ -57,25 +55,61 @@ function App() {
       await getCityname(latitude, longidute, ApiKey);
     };
     fetchData();
-  },[latitude,longidute]);
+  }, [latitude, longidute]);
+
   const searchHandler = (value) => {
     if (!value) return;
-    
-    getCoords(value,ApiKey);
+    getCoords(value, ApiKey);
   };
+  const addToFavoriteHandler = () => {
+    currentSetIsFavorite(currentCity);
+   
+    setFavoriteCities((prevState) => {
+    
+      if (prevState.includes(currentCity)){
+        return [...prevState]
+      } else{
+        return [...prevState, currentCity];
+      }
+    });
+   
+  };
+    useEffect(() => {
+      const favCity=JSON.parse(localStorage.getItem('favorite'));
+      if (!favCity) return;
+      console.log(favCity);
+      setFavoriteCities(favCity);
 
+    },[]);
+
+  useEffect(()=>{
+    
+    
+    localStorage.setItem('favorite',JSON.stringify(favoriteCities))
+  },[favoriteCities])
+  useEffect(()=>{
+    if(favoriteCities.includes(currentCity)){
+      currentSetIsFavorite(true)
+    }else{
+      currentSetIsFavorite(false);
+    }
+  },[currentCity])
+
+  
+ 
   return (
     <main className="App">
       <div className={styles["main-container"]}>
         <div className={styles["main-container-grid"]}>
           <CurrentLocation location={currentCity}></CurrentLocation>
-          <AddToFavorite></AddToFavorite>
+          <AddToFavorite
+            onAdd={addToFavoriteHandler}
+            isFavorite={currentIsFavorite}
+          ></AddToFavorite>
           <SearchBar onSearch={searchHandler}></SearchBar>
-
           {currentWeather ? (
             <CurrentReport weather={currentWeather?.current} />
           ) : null}
-
           {currentWeather ? (
             <HourlyReport weather={currentWeather?.hourly}></HourlyReport>
           ) : null}

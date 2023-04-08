@@ -17,7 +17,7 @@ const DetaildReport=(props)=>{
         </div>
         <div className="current-visibility">
           <label>Visibility:</label>
-          <span>{props.visibility / 1000}km</span>
+          <span>{Math.round(props.visibility / 1000)}km</span>
         </div>
         <div className="current-wind-speed">
           <label>Wind speed:</label>
