@@ -1,7 +1,11 @@
 import styles from "./HourlyItem.module.css"
 const HourlyItem=(props)=>{
+    const hatz=()=>{
+        props.onClick(props.weather)
+
+    }
     return (
-      <div className={styles["hourly-item"]} onClick={props.onClick}>
+      <div className={styles["hourly-item"]} onClick={hatz}>
         <label className="hour">{props.hour}</label>
         <img
           className={styles.icon}

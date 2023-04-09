@@ -1,25 +1,33 @@
 import { useState } from "react"
 import { Input } from "antd";
 import styles from "./SearchBar.module.css"
+const { Search } = Input;
+
 
 const SearchBar=(props)=>{
   const [enteredInput, setEnteredInput] = useState("");
 
   const inputChangeHandler = (event) => {
-   setEnteredInput(event.target.value)
-    props.onSearch(event.target.value)
-   
+    console.log(event.target.value)
+    setEnteredInput(event.target.value);
+    props.onSearch(event.target.value);
+    
     
   };
+  const searchChangeHandler=(event)=>{
+    console.log(event)
+    setEnteredInput(event)
+    props.onSearch(event)
+
+  }
   return (
-    <Input
-      className={styles.search}
-      type={Input.Search}
-      allowClear={true}
-      
+    <Search
+      placeholder="Search"
+      allowClear
       onPressEnter={inputChangeHandler}
-      
-    ></Input>
+      className={styles["search"]}
+      onSearch={searchChangeHandler}
+    />
   );
 }
 export default SearchBar;

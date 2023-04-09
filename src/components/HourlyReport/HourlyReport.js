@@ -2,10 +2,13 @@ import { ScrollContainer } from "react-indiana-drag-scroll";
 import "react-indiana-drag-scroll/dist/style.css";
 import styles from "./HourlyReport.module.css";
 import HourlyItem from "./HourlyItem/HourlyItem";
-import { useState } from "react";
+
 const HourlyReport = (props) => {
-  const [isClicked, setIsClicked] = useState(false);
-  const clickHandler = (event) => {};
+  
+  const clickHandler = (e) => {
+   props.onClick(e)
+  };
+  
   const hours = [...props.weather.slice(0, 24)];
   const makehours = (unix) => {
     const miliseconds = unix * 1000;
@@ -23,6 +26,7 @@ const HourlyReport = (props) => {
             {hours.map((el) => {
               return (
                 <HourlyItem
+                  weather={el}
                   key={el.dt}
                   hour={makehours(el.dt)}
                   icon={el.weather[0].icon}

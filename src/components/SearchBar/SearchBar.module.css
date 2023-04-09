@@ -1,8 +1,11 @@
 .search{
-    grid-column: 3/span 2;
+    grid-column: span 4;
     grid-row: 3;
-    text-align: end;
+    text-align: start;
     border: none;
     
+    
+}
+@media screen {
     
 }

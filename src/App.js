@@ -6,6 +6,8 @@ import AddToFavorite from "./components/AddToFavorite/AddtoFavorite";
 import CurrentLocation from "./components/CurrentLocation/CurrentLocation";
 import Alerts from "./components/Alerts/Alerts";
 
+import Swal from "sweetalert2"
+
 import SearchBar from "./components/SearchBar/SearchBar";
 import WeeklyReport from "./components/WeeklyReport/WeeklyReport";
 import FavoriteLocations from "./components/FavoriteLocations/FavoriteLocations";
@@ -13,12 +15,15 @@ import FavoriteLocations from "./components/FavoriteLocations/FavoriteLocations"
 function App() {
   const [latitude, setLatitude] = useState([]);
   const [longidute, setLongitude] = useState([]);
-  const [currentWeather, setCurrentWeather] = useState();
+  const [weather, setWeather] = useState();
   const [currentCity, setCurrentCity] = useState("");
   const [currentIsFavorite, currentSetIsFavorite] = useState(false);
   const [favoriteCities, setFavoriteCities] = useState([]);
   const [background, setBackground] = useState("");
-  const [isLoading,setPageisLoaing]=useState(true)
+  const [isLoading, setPageisLoaing] = useState(true);
+  const [currentWeather, setCurrentWeather] = useState({});
+ 
+  
 
   const getCityname = (lat, lon, ApiKey) => {
     fetch(
@@ -32,15 +37,26 @@ function App() {
       `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${long}&appid=${ApiKey}&units=metric`
     )
       .then((response) => response.json())
-      .then((data) => setCurrentWeather(data));
+      .then((data) => setWeather(data));
   };
+  
   const getCoords = (city, ApiKey) => {
     fetch(
       `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${ApiKey}`
     )
       .then((response) => response.json())
-      .then((data) => setData(data));
-  };
+      .then((data) => setData(data))
+      .catch(error=>{
+        Swal.fire({
+          title:"Error",
+          text:"Wrong input. Please enter a valid location",
+          icon:'error',
+          confirmButtonText:"OK"
+        })
+      })
+    
+    }
+  ;
   const setData = (data) => {
     const lat = data[0].lat;
     const long = data[0].lon;
@@ -78,12 +94,15 @@ function App() {
       }
     });
   };
+  const currentWeatherHandler=(weather)=>{
+    setCurrentWeather(weather)
+  }
   const removeFavoriteHandler = () => {
     currentSetIsFavorite(false);
     const newCities = favoriteCities.filter((el) => el !== currentCity);
     setFavoriteCities(newCities);
   };
- 
+
   useEffect(() => {
     const favCity = JSON.parse(localStorage.getItem("favorite"));
     if (!favCity) return;
@@ -101,15 +120,14 @@ function App() {
     } else {
       currentSetIsFavorite(false);
     }
-    
   }, [currentCity]);
   useEffect(() => {
-    let description = currentWeather?.current.weather[0].main;
+    let description = weather?.current.weather[0].main;
     if (!description) return;
     setBackground(description.toLowerCase());
     setPageisLoaing(false);
-    
-  }, [currentWeather]);
+    setCurrentWeather(weather.current);
+  }, [weather]);
   return (
     <main className="App">
       {isLoading ? null : (
@@ -127,15 +145,15 @@ function App() {
               isFavorite={currentIsFavorite}
             ></AddToFavorite>
             <SearchBar onSearch={searchHandler}></SearchBar>
-            {currentWeather.alerts?<Alerts alerts={currentWeather.alerts}>e alerta</Alerts>:null}
-            {currentWeather ? (
-              <CurrentReport weather={currentWeather?.current} />
+            {weather.alerts ? (
+              <Alerts alerts={weather.alerts}>e alerta</Alerts>
             ) : null}
-            {currentWeather ? (
-              <HourlyReport weather={currentWeather?.hourly}></HourlyReport>
+            {currentWeather ? <CurrentReport weather={currentWeather} /> : null}
+            {weather ? (
+              <HourlyReport weather={weather?.hourly} onClick={currentWeatherHandler}></HourlyReport>
             ) : null}
-            {currentWeather ? (
-              <WeeklyReport daily={currentWeather?.daily}></WeeklyReport>
+            {weather ? (
+              <WeeklyReport daily={weather?.daily}></WeeklyReport>
             ) : null}
           </div>
         </div>
