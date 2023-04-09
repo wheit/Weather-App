@@ -1,5 +1,6 @@
 import styles from "./DetaildReport.module.css"
 const DetaildReport=(props)=>{
+ 
     
     return (
       <div className={styles["current-weather-details"]}>
@@ -22,6 +23,10 @@ const DetaildReport=(props)=>{
         <div className="current-wind-speed">
           <label>Wind speed:</label>
           <span>{Math.round(+props.wind)}m/s</span>
+        </div>
+        <div className="current-uv-index">
+          <label>UV Index</label>
+          <span>{props.uvi}</span>
         </div>
       </div>
     );

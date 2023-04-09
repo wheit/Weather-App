@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Input } from "antd";
 import styles from "./SearchBar.module.css"
 

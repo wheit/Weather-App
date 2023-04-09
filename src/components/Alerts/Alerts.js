@@ -33,7 +33,7 @@ const Alerts = (props) => {
     }
   };
   const addZeroTominutes = (date) => {
-    if (date.getMinutes() == 0) {
+    if (date.getMinutes() === 0) {
       return `${date.getMinutes()}0`;
     } else {
       return date.getMinutes();
@@ -41,7 +41,7 @@ const Alerts = (props) => {
   };
   const getDate = (value) => {
     const date = new Date(value * 1000);
-    date.getMinutes() == 0 ? console.log("este 0") : console.log("nu e");
+  
     return `${date.getDate()} ${
       month[date.getMonth()]
     },${date.getHours()}:${addZeroTominutes(date)}`;

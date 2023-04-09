@@ -5,41 +5,14 @@
     grid-row: 8;
     grid-column: span 4;
 }
-.title{ 
-  font-size: 2.4rem;
-  font-weight: 700;
-  
-}
-.hourly-items-container{
+
+.daily-items-container{
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
 
 }
-.hourly-item{
-    display: flex;
-    gap: 1.5rem;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.315);
-    border-radius: 1rem;
-    font-size: 1.4rem;
-    padding: 0 1rem;
-    font-weight: 600;
-    
-}
-.icon{
-    height: 6rem;
-}
-.description{
-   
-    text-align: end;
-}
-.day{
-   
-    flex: 1;
-    
-    text-align: start;
-}
-.min-max{
-
+.title {
+  font-size: 2.4rem;
+  font-weight: 700;
 }

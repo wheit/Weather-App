@@ -2,11 +2,11 @@ import DetaildReport from "../DeteildReport/DetaildReport";
 import styles from "./CurrentReport.module.css";
 const CurrentReport = (props) => {
   if (!props.weather) return;
+ 
   
  
   return (
     <>
-    
       <div className={styles["current-weather"]}>
         <img
           className={styles.icon}
@@ -32,8 +32,9 @@ const CurrentReport = (props) => {
         clouds={props.weather.clouds}
         humidity={props.weather.humidity}
         visibility={props.weather.visibility}
-        wind={props.weather['wind_speed']}
+        wind={props.weather["wind_speed"]}
         pressure={props.weather.pressure}
+        uvi={props.weather.uvi}
       ></DetaildReport>
     </>
   );

@@ -110,10 +110,6 @@ function App() {
     setPageisLoaing(false);
     
   }, [currentWeather]);
-
- 
-  
-
   return (
     <main className="App">
       {isLoading ? null : (
