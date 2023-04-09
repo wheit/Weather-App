@@ -9,7 +9,7 @@
     background-color: rgba(255, 255, 255, 0.315);
     gap: 1.5rem 1rem;
     box-shadow: 0 5px 10px 0 hsla(0,0%,88%,.667);
-    grid-row: 5;
+    grid-row: 6;
     grid-column: span 4;
 }
 .current-weather-details div{
@@ -26,6 +26,6 @@
 @media screen and (min-width:600px) {
   
   .current-weather-details{
-    grid-row: 4;
+    grid-row: 5;
   }
 }

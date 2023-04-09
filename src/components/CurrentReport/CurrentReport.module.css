@@ -10,7 +10,7 @@
   flex-direction: row;
   justify-content: space-between;
   grid-column:span 4;
-  grid-row: 4;
+  grid-row: 5;
   padding: 1rem;
 }
 .icon {

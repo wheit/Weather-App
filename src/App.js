@@ -4,6 +4,7 @@ import CurrentReport from "./components/CurrentReport/CurrentReport";
 import HourlyReport from "./components/HourlyReport/HourlyReport";
 import AddToFavorite from "./components/AddToFavorite/AddtoFavorite";
 import CurrentLocation from "./components/CurrentLocation/CurrentLocation";
+import Alerts from "./components/Alerts/Alerts";
 
 import SearchBar from "./components/SearchBar/SearchBar";
 import WeeklyReport from "./components/WeeklyReport/WeeklyReport";
@@ -130,7 +131,7 @@ function App() {
               isFavorite={currentIsFavorite}
             ></AddToFavorite>
             <SearchBar onSearch={searchHandler}></SearchBar>
-            {/* {currentWeather.alerts?<div>e alerta</div>:null} */}
+            {currentWeather.alerts?<Alerts alerts={currentWeather.alerts}>e alerta</Alerts>:null}
             {currentWeather ? (
               <CurrentReport weather={currentWeather?.current} />
             ) : null}
