@@ -1,11 +1,12 @@
 import styles from "./HourlyItem.module.css"
 const HourlyItem=(props)=>{
-    const hatz=()=>{
+  
+    const putWeather=()=>{
         props.onClick(props.weather)
 
     }
     return (
-      <div className={styles["hourly-item"]} onClick={hatz}>
+      <div className={`${styles["hourly-item"]} ${styles[props.className]}`} onClick={putWeather}>
         <label className="hour">{props.hour}</label>
         <img
           className={styles.icon}
@@ -13,7 +14,7 @@ const HourlyItem=(props)=>{
           alt={`icon${props.icon}`}
         ></img>
         <label className="temp">
-            {props.temp}
+          {props.temp}
           &deg;
           <span>C</span>
         </label>

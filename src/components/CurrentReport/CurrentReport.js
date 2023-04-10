@@ -1,6 +1,7 @@
 import DetaildReport from "../DeteildReport/DetaildReport";
 import styles from "./CurrentReport.module.css";
 const CurrentReport = (props) => {
+ 
   if (!props.weather) return;
  
   

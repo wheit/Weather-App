@@ -26,13 +26,15 @@
 }
 .feels-like {
   font-size: 1.4rem;
-  color: #757575;
+  color: black;
 }
 .feels-like span {
   font-size: 1.4rem;
+  font-weight: 600;
 }
 .description {
   font-size: 1.4rem;
+  font-weight: 600;
 }
 
 @media screen and (min-width:600px) {

@@ -3,7 +3,6 @@ import styles from "./WeeklyReport.module.css";
 import WeeklyItem from "./WeeklyItem/WeeklyItem";
 
 export const WeeklyReport = (props) => {
-  console.log(props.daily)
   const daysOfWeek = [
     "Sunday",
     "Monday",

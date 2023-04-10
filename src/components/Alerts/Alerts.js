@@ -18,7 +18,7 @@ const Alerts = (props) => {
     "November",
     "December",
   ];
-  console.log(props.alerts);
+  
   const [isClicked, setIsClicked] = useState(false);
   const clickHandler = () => {
     setIsClicked(!isClicked);

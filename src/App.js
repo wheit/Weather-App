@@ -21,7 +21,7 @@ function App() {
   const [favoriteCities, setFavoriteCities] = useState([]);
   const [background, setBackground] = useState("");
   const [isLoading, setPageisLoaing] = useState(true);
-  const [currentWeather, setCurrentWeather] = useState({});
+  const [currentWeather, setCurrentWeather] = useState();
  
   
 
@@ -79,7 +79,7 @@ function App() {
   }, [latitude, longidute]);
 
   const searchHandler = (value) => {
-    console.log(value);
+    ;
     if (!value) return;
     getCoords(value, ApiKey);
   };
@@ -122,12 +122,19 @@ function App() {
     }
   }, [currentCity]);
   useEffect(() => {
-    let description = weather?.current.weather[0].main;
-    if (!description) return;
-    setBackground(description.toLowerCase());
-    setPageisLoaing(false);
-    setCurrentWeather(weather.current);
+    if(!weather) return
+    setCurrentWeather(weather.hourly[0]);
   }, [weather]);
+
+  useEffect(()=>{
+    if(!currentWeather)return
+     let description = currentWeather.weather[0].main;
+     setBackground(description.toLowerCase()); 
+      setPageisLoaing(false)
+   
+  },[currentWeather])
+
+  
   return (
     <main className="App">
       {isLoading ? null : (
@@ -150,7 +157,7 @@ function App() {
             ) : null}
             {currentWeather ? <CurrentReport weather={currentWeather} /> : null}
             {weather ? (
-              <HourlyReport weather={weather?.hourly} onClick={currentWeatherHandler}></HourlyReport>
+              <HourlyReport weather={weather?.hourly} onClick={currentWeatherHandler} currentWeather={currentWeather}></HourlyReport>
             ) : null}
             {weather ? (
               <WeeklyReport daily={weather?.daily}></WeeklyReport>
