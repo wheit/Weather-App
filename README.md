@@ -16,6 +16,17 @@ Desktop view
 
 ![image](https://user-images.githubusercontent.com/86247584/230993758-928293f2-124c-4b51-87ff-d0803c748cbe.png)
 
+Functionalities:<br>
+-get current weather report <br>
+-add or remove from favorites<br>
+-search new locations <br>
+-see forecasted weather for the next 24 hours (click on any to see more details)<br>
+-see forecasted weather for the next 7 days (click on any to see more details)<br>
+-get alerts for bad weather <br>
+-changing background based on the current weather<br>
+![image](https://user-images.githubusercontent.com/86247584/230996921-a309417b-c5b9-4945-af3e-1eb42172114f.png)
+
+
 
 
 
