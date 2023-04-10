@@ -17,7 +17,7 @@ const WeeklyItem = (props) => {
         <label className={styles.day}>{props.date}</label>
         <label className={styles.description}>{props.description}</label>
         <label className={styles["min-max"]}>
-          {Math.round(props.minTemp)}&deg;C/{Math.round(props.maxTemp)}
+          {Math.round(props.minTemp)}&deg;C/{Math.round(props.maxTemp)}&deg;C
         </label>
       </div>
       {isClicked ? (
