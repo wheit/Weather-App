@@ -1,6 +1,6 @@
 import styles from "./CurrentLocation.module.css"
 const CurrentLocation = (props) => {
-  return( <div className={styles.location}>{props.location}</div>)
+  return( <section className={styles.location}>{props.location}</section>)
  
 };
 export default CurrentLocation;

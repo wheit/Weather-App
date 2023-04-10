@@ -4,7 +4,7 @@ const CurrentReport = (props) => {
  
   return (
     <>
-      <div className={styles["current-weather"]}>
+      <section className={styles["current-weather"]}>
         <img
           className={styles.icon}
           src={require(`../../resources/icon_${props.weather.weather[0].icon}.png`)}
@@ -24,7 +24,7 @@ const CurrentReport = (props) => {
             {props.weather.weather[0].description}
           </label>
         </div>
-      </div>
+      </section>
       <DetaildReport
         clouds={props.weather.pop}
         humidity={props.weather.humidity}

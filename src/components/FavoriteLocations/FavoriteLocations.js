@@ -9,7 +9,7 @@ const FavoriteLocations = (props) => {
     props.onClick(e.target.textContent);
   };
   return (
-    <div className={styles["favorite-locations-container"]}>
+    <section className={styles["favorite-locations-container"]}>
       <label>Favorite Locations</label>
       <div>
         <ScrollContainer className={styles["favorite-locations"]}>
@@ -28,7 +28,7 @@ const FavoriteLocations = (props) => {
           })}
         </ScrollContainer>
       </div>
-    </div>
+    </section>
   );
 };
 export default FavoriteLocations;

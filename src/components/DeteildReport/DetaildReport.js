@@ -3,7 +3,7 @@ const DetaildReport=(props)=>{
  
     
     return (
-      <div className={styles["current-weather-details"]}>
+      <section className={styles["current-weather-details"]}>
         <div className="current-clouds">
           <label>Rain:</label>
           <span>{Math.round(props.clouds*100)}%</span>
@@ -28,7 +28,7 @@ const DetaildReport=(props)=>{
           <label>UV Index</label>
           <span>{props.uvi}</span>
         </div>
-      </div>
+      </section>
     );
 
 }

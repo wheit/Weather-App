@@ -20,7 +20,7 @@ export const WeeklyReport = (props) => {
     return daysOfWeek[dayIndex];
   };
   return (
-    <div className={styles["daily-report"]}>
+    <section className={styles["daily-report"]}>
       <label className={styles.title}>Daily</label>
       <div className={styles["daily-items-container"]}>
         {props.daily.map((el) => {
@@ -43,7 +43,7 @@ export const WeeklyReport = (props) => {
           );
         })}
       </div>
-    </div>
+    </section>
   );
 };
 export default WeeklyReport;

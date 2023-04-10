@@ -21,7 +21,7 @@ const HourlyReport = (props) => {
   const activeIndex = hours.indexOf(props.currentWeather);
   return (
     <>
-      <div className={styles.hourly}>
+      <section className={styles.hourly}>
         <label className={styles.title}>Hourly</label>
         <ScrollContainer>
           <div className={styles["hourly-items-container"]}>
@@ -40,7 +40,7 @@ const HourlyReport = (props) => {
             })}
           </div>
         </ScrollContainer>
-      </div>
+      </section>
     </>
   );
 };

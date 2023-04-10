@@ -51,7 +51,7 @@ const Alerts = (props) => {
   };
 
   return (
-    <div className={styles["alerts-container"]} onClick={clickHandler}>
+    <section className={styles["alerts-container"]} onClick={clickHandler}>
       <div className={styles["alerts-main"]}>
         <WarningOutlined
           style={{
@@ -85,7 +85,7 @@ const Alerts = (props) => {
             );
           })
         : null}
-    </div>
+    </section>
   );
 };
 export default Alerts;
