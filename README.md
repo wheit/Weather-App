@@ -8,5 +8,14 @@ Run the app:
 
 3.npm start<br>
 
+Mobile view
+
+![image](https://user-images.githubusercontent.com/86247584/230993314-403572af-e9b3-415a-a7dc-eae062f21f55.png)
+
+Desktop view
+
+![image](https://user-images.githubusercontent.com/86247584/230993758-928293f2-124c-4b51-87ff-d0803c748cbe.png)
+
+
 
 
