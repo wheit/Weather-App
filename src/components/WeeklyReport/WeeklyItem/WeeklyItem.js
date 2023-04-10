@@ -4,6 +4,7 @@ const WeeklyItem = (props) => {
   const [isClicked, setIsClicked] = useState(false);
   const clickHandler = () => {
     setIsClicked(!isClicked);
+    console.log(props.rain)
   };
   return (
     <div className={styles["daily-item-container"]}>
@@ -22,6 +23,10 @@ const WeeklyItem = (props) => {
       {isClicked ? (
         <div className={styles["daily-weather-detail"]}>
           <div>
+            <label>Rain:</label>
+            <span>{Math.round(props.rain * 100)}%</span>
+          </div>
+          <div>
             <label>Clouds:</label>
             <span>{props.clouds}%</span>
           </div>
@@ -30,17 +35,14 @@ const WeeklyItem = (props) => {
             <span>{props.humidity}%</span>
           </div>
           <div>
-            <label>Wind:</label>
-            <span>{Math.round(props.wind)}m/s</span>
-          </div>
-          <div>
             <label>Pressure:</label>
             <span>{props.pressure}hPa</span>
           </div>
           <div>
-            <label>Rain:</label>
-            <span>{Math.round(props.rain)}%</span>
+            <label>Wind:</label>
+            <span>{Math.round(props.wind)}m/s</span>
           </div>
+
           <div>
             <label>UV Index:</label>
             <span>{props.uvi}</span>

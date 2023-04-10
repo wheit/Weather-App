@@ -12,7 +12,7 @@ export const WeeklyReport = (props) => {
     "Friday",
     "Saturday",
   ];
-
+  //This function converts a Unix timestamp to a string representing the day of the week, such as "Monday", "Tuesday", etc. Here is the commented code:
   const makeDays = (unix) => {
     const miliseconds = unix * 1000;
     const date = new Date(miliseconds);
@@ -24,6 +24,7 @@ export const WeeklyReport = (props) => {
       <label className={styles.title}>Daily</label>
       <div className={styles["daily-items-container"]}>
         {props.daily.map((el) => {
+          
           return (
             <WeeklyItem
               key={el.dt}
@@ -34,11 +35,10 @@ export const WeeklyReport = (props) => {
               description={el.weather[0].description}
               humidity={el.humidity}
               clouds={el.clouds}
-              wind={el['wind_speed']}
+              wind={el["wind_speed"]}
               pressure={el.pressure}
-              rain={el.rain}
+              rain={el.pop}
               uvi={el.uvi}
-              
             ></WeeklyItem>
           );
         })}

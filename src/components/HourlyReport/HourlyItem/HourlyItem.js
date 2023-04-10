@@ -1,6 +1,6 @@
 import styles from "./HourlyItem.module.css"
 const HourlyItem=(props)=>{
-  
+  //Pases the data to the HourlyReport.js
     const putWeather=()=>{
         props.onClick(props.weather)
 

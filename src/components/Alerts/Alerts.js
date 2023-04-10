@@ -18,11 +18,12 @@ const Alerts = (props) => {
     "November",
     "December",
   ];
-  
+
   const [isClicked, setIsClicked] = useState(false);
   const clickHandler = () => {
     setIsClicked(!isClicked);
   };
+  // Function to set color warning for the icon based on message
   const setColorWarning = (message) => {
     if (message.toLowerCase().includes("yellow")) {
       return "yellow";
@@ -32,6 +33,7 @@ const Alerts = (props) => {
       return "red";
     }
   };
+  //This function adds a zero to minutes if they are 0
   const addZeroTominutes = (date) => {
     if (date.getMinutes() === 0) {
       return `${date.getMinutes()}0`;
@@ -39,9 +41,10 @@ const Alerts = (props) => {
       return date.getMinutes();
     }
   };
+  //This function takes a Unix timestamp value, converts it into a JavaScript date object, and returns a formatted string that includes the date, month, hour, and minute.
   const getDate = (value) => {
     const date = new Date(value * 1000);
-  
+
     return `${date.getDate()} ${
       month[date.getMonth()]
     },${date.getHours()}:${addZeroTominutes(date)}`;

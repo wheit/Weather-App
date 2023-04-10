@@ -5,8 +5,8 @@ const DetaildReport=(props)=>{
     return (
       <div className={styles["current-weather-details"]}>
         <div className="current-clouds">
-          <label>Clouds:</label>
-          <span>{props.clouds}%</span>
+          <label>Rain:</label>
+          <span>{Math.round(props.clouds*100)}%</span>
         </div>
         <div className="current-pressure">
           <label>Pressure:</label>

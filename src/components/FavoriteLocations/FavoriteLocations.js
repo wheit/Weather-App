@@ -1,9 +1,10 @@
-import { useState } from "react";
+
 import styles from "./FavoriteLocations.module.css";
 import "react-indiana-drag-scroll/dist/style.css";
 import ScrollContainer from "react-indiana-drag-scroll";
 
 const FavoriteLocations = (props) => {
+  //Get's favorite location name to App.js so it can fetch the data
   const clickHandler = (e) => {
     props.onClick(e.target.textContent);
   };

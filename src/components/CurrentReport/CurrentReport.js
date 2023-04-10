@@ -2,10 +2,6 @@ import DetaildReport from "../DeteildReport/DetaildReport";
 import styles from "./CurrentReport.module.css";
 const CurrentReport = (props) => {
  
-  if (!props.weather) return;
- 
-  
- 
   return (
     <>
       <div className={styles["current-weather"]}>
@@ -30,7 +26,7 @@ const CurrentReport = (props) => {
         </div>
       </div>
       <DetaildReport
-        clouds={props.weather.clouds}
+        clouds={props.weather.pop}
         humidity={props.weather.humidity}
         visibility={props.weather.visibility}
         wind={props.weather["wind_speed"]}
