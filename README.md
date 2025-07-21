@@ -2,7 +2,7 @@ Weather App is a React application that allows users to search for weather infor
 
 ```code
 Run the app:	
-1.git clone repository
+1.git clone https://github.com/wheit/Weather-App.git
 
 2.npm install
 
